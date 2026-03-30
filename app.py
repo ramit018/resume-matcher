@@ -10,7 +10,7 @@ st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 * { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
-.stApp { background: #0a0a0f; }
+.stApp { background: linear-gradient(135deg, #0d1b2a 0%, #1b2838 50%, #0d1b2a 100%); min-height: 100vh; }
 .hero { text-align: center; padding: 3rem 0 2rem; }
 .hero-badge { display: inline-block; background: rgba(167,139,250,0.15); color: #a78bfa; border: 1px solid rgba(167,139,250,0.3); border-radius: 100px; padding: 6px 18px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem; }
 .hero-title { font-size: 3.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }

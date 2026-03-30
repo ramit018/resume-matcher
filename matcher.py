@@ -13,23 +13,19 @@ def match_resume_to_job(resume_skills, job_description):
         "typescript", "vue", "angular", "spring", "hibernate", "redis",
         "elasticsearch", "graphql", "firebase", "gcp", "devops", "ci/cd",
         "selenium", "pytest", "junit", "maven", "gradle", "bash", "shell",
-        "r", "matlab", "scala", "hadoop", "spark", "kafka", "airflow",
+        "scala", "hadoop", "spark", "kafka", "airflow", "matlab",
         "powerpoint", "word", "project management", "time management",
         "analytical", "critical thinking", "research", "presentation"
     ]
     
     job_skills = []
     for skill in SKILLS_DB:
-        if skill in job_lower:
+        skill_pattern = " " + skill + " "
+        job_padded = " " + job_lower + " "
+        if skill_pattern in job_padded:
             job_skills.append(skill)
     
-    resume_skills_lower = [s.lower() for s in resume_skills]
-    
-    if not job_skills:
-        all_words = job_lower.split()
-        for word in all_words:
-            if len(word) > 3:
-                job_skills.append(word)
+    resume_skills_lower = [s.lower().strip() for s in resume_skills]
     
     if not job_skills:
         return {
@@ -42,18 +38,11 @@ def match_resume_to_job(resume_skills, job_description):
     matched = []
     missing = []
     
-   for skill in job_skills:
-    found = False
-    for r_skill in resume_skills_lower:
-        if skill == r_skill or (len(skill) > 3 and skill in r_skill) or (len(r_skill) > 3 and r_skill in skill):
-                found = True
-                matched.append(skill)
-                break
-        if not found:
+    for skill in job_skills:
+        if skill in resume_skills_lower:
+            matched.append(skill)
+        else:
             missing.append(skill)
-    
-    matched = list(set(matched))
-    missing = list(set(missing))
     
     score = int((len(matched) / len(job_skills)) * 100)
     score = max(0, min(100, score))

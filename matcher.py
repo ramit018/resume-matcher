@@ -42,10 +42,10 @@ def match_resume_to_job(resume_skills, job_description):
     matched = []
     missing = []
     
-    for skill in job_skills:
-        found = False
-        for r_skill in resume_skills_lower:
-            if skill in r_skill or r_skill in skill:
+   for skill in job_skills:
+    found = False
+    for r_skill in resume_skills_lower:
+        if skill == r_skill or (len(skill) > 3 and skill in r_skill) or (len(r_skill) > 3 and r_skill in skill):
                 found = True
                 matched.append(skill)
                 break
